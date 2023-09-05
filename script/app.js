@@ -60,3 +60,5 @@ if(localStorage.getItem('city')){
     .then((data) => updateUI(data))
     .catch((err) => console.log(err));
 }
+
+
