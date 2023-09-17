@@ -41,20 +41,26 @@ cityForm.addEventListener("submit", (e) => {
   const city = cityForm.location.value.trim();
   // console.log(city);
   forecast.updateCity(city)
-    .then((data) => updateUI(data))
+    .then((data) => {
+      updateUI(data)
+    document.querySelector("label").innerText = 'Enter a location for Weather Information';
+    })
     .catch((err) => {
       document.querySelector("label").innerText = 'make sure the spell or give me a right place';
       console.log(err);
     });
-
-  cityForm.reset();
-
-  localStorage.setItem('city', city)
-});
-
-if(localStorage.getItem('city')){
-  forecast.updateCity(localStorage.getItem('city'))
-    .then((data) => updateUI(data))
+    
+    cityForm.reset();
+    
+    localStorage.setItem('city', city)
+  });
+  
+  if(localStorage.getItem('city')){
+    forecast.updateCity(localStorage.getItem('city'))
+    .then((data) =>{
+       updateUI(data)
+    document.querySelector("label").innerText = 'Enter a location for Weather Information';
+  })
     .catch((err) => console.log(err));
 }
 
